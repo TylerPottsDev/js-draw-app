@@ -1,46 +1,17 @@
-
 const canvas = new Draw(document.querySelector('canvas'))
-canvas.SetWidth(400)
-canvas.SetHeight(400)
-canvas.setup()
-// canvas.width = window.innerWidth
-// canvas.height = window.innerHeight
-// const ctx = canvas.getContext('2d')
-// let isDrawing = false
-// const options = {
-// 	color: '#000000',
-// 	strokethickness: 20
-// }
+canvas.Setup()
 
-// const startDrawing = () => {
-// 	isDrawing = true
-// }
+const thicknessInput = document.querySelector('#thickness')
+const colorInput = document.querySelector('#color')
+const zoomResetBtn = document.querySelector('#zoomReset')
+const clearBtn = document.querySelector('#clear')
+const bgColorInput = document.querySelector('#bgcolor')
+const saveBtn = document.querySelector('#save')
 
-// const stopDrawing = () => {
-// 	isDrawing = false
-// 	ctx.beginPath();
-// }
-
-// const draw = (evt) => {
-// 	const mouse = {
-// 		x: evt.clientX,
-// 		y: evt.clientY
-// 	}
-
-// 	if (isDrawing) {
-// 		console.log("Drawing");
-		
-// 		ctx.strokeStyle = options.color
-// 		ctx.lineWidth = options.strokethickness
-// 		ctx.lineCap = "round"
-// 		ctx.lineTo(mouse.x, mouse.y)
-// 		ctx.stroke()
-// 		ctx.beginPath()
-// 		ctx.moveTo(mouse.x, mouse.y)
-
-// 	}
-// }
-
-// document.addEventListener('mousedown', startDrawing)
-// document.addEventListener('mouseup', stopDrawing)
-// document.addEventListener('mousemove', draw)
+thicknessInput.addEventListener('input', (evt) => canvas.SetThickness(evt.target.value))
+colorInput.addEventListener('input', (evt) => canvas.SetColor(evt.target.value))
+bgColorInput.addEventListener('input', (evt) => canvas.SetBackgroundColor(evt.target.value))
+document.addEventListener('wheel', (evt) => canvas.SetZoom(evt.deltaY))
+zoomResetBtn.addEventListener('click', () => canvas.ResetZoom())
+clearBtn.addEventListener('click', () => canvas.Clear())
+saveBtn.addEventListener('click', () => canvas.DownloadCanvas())
