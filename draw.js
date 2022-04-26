@@ -9,6 +9,7 @@ class Draw {
 			width: null,
 			height: null,
 			color: '#000000',
+			backgroundColor: '#ffffff',
 			strokethickness: 10,
 			pan: {
 				x: 0,
@@ -29,7 +30,7 @@ class Draw {
 		this.canvas.width = this.options.width != null ? this.options.width : window.innerWidth
 		this.canvas.height = this.options.height != null ? this.options.height : window.innerHeight
 
-		this.canvas.addEventListener('mousemove', this._Move.bind(this))
+		document.addEventListener('mousemove', this._Move.bind(this))
 		this.canvas.addEventListener('mouseenter', () => this.ctx.beginPath())
 
 		document.addEventListener('mousemove', (evt) => {
@@ -39,12 +40,14 @@ class Draw {
 			}
 		})
 
-		document.addEventListener('mousedown', (evt) => {
+		this.canvas.addEventListener('mousedown', (evt) => {
 			if (evt.button === 0) {
 				this.isDrawing = true
 				this.ctx.beginPath()
 			}
+		})
 
+		document.addEventListener('mousedown', (evt) => {
 			if (evt.button === 1) {
 				this.isPanning = true
 			}
@@ -130,6 +133,11 @@ class Draw {
 	 */
 	ResetZoom () {
 		this.scale = 1
+	}
+
+	ResetPan () {
+		this.options.pan.x = 0
+		this.options.pan.y = 0
 	}
 
 	Clear () {

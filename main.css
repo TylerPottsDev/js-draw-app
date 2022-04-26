@@ -42,14 +42,6 @@ canvas {
 }
 
 .toolbar-item input {
-	appearance: none;
-	border: none;
-	outline: none;
-	background: none;
-	
-	text-align: center;
-	border: 1px solid #EEE;
-	
 	display: block;
 	width: 3rem;
 	height: 3rem;
